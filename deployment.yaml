@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: first-app-cd
+  labels:
+    app: first-app-cd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: first-app-cd
+  template:
+    metadata:
+      labels:
+        app: first-app-cd
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
