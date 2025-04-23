@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: first-app-cd
-  labels:
-    app: first-app-cd
+  name: hello-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: first-app-cd
+      app: hello-app
   template:
     metadata:
       labels:
-        app: first-app-cd
+        app: hello-app
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.25
-        ports:
-        - containerPort: 80
+        - name: hello-app
+          image: hashicorp/http-echo
+          args:
+            - "-text=Hello from ArgoCD!"
+          ports:
+            - containerPort: 5678
+
